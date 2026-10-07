@@ -111,12 +111,12 @@ const problems = [
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-    transition: all var(--transition-smooth);
   }
 
-  .pitfall-card:hover {
-    border-left-color: #f87171;
-    transform: translateY(-3px);
+  @media (hover: hover) and (pointer: fine) {
+    .pitfall-card:hover {
+      border-left-color: #f87171;
+    }
   }
 
   .pitfall-header {

@@ -223,7 +223,7 @@ ul, ol {
   line-height: 1.6;
 }
 
-/* Glass Card */
+/* Glass Card & Interactive Card System */
 .glass-card {
   background: var(--bg-card);
   backdrop-filter: blur(12px);
@@ -231,12 +231,48 @@ ul, ol {
   border: 1px solid var(--border-subtle);
   border-radius: 1rem;
   padding: 1.75rem;
-  transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 250ms ease,
+              box-shadow 250ms ease,
+              background-color 250ms ease;
+  will-change: transform;
 }
 
-.glass-card:hover {
-  border-color: var(--border-accent);
-  box-shadow: var(--shadow-lg);
+@media (hover: hover) and (pointer: fine) {
+  .glass-card:hover {
+    border-color: rgba(56, 189, 248, 0.45);
+    background-color: var(--bg-card-hover);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45), 0 0 20px rgba(14, 165, 233, 0.15);
+    transform: translateY(-4px);
+  }
+
+  .glass-card:hover .card-icon-badge,
+  .glass-card:hover .feature-icon,
+  .glass-card:hover .service-icon-box,
+  .glass-card:hover .pitfall-icon,
+  .glass-card:hover .factor-icon-box,
+  .glass-card:hover .scenario-icon,
+  .glass-card:hover .advice-icon,
+  .glass-card:hover .offering-icon,
+  .glass-card:hover .area-icon-wrap {
+    transform: scale(1.06);
+    filter: drop-shadow(0 0 8px rgba(14, 165, 233, 0.4));
+  }
+}
+
+.card-icon-badge,
+.feature-icon,
+.service-icon-box,
+.pitfall-icon,
+.factor-icon-box,
+.scenario-icon,
+.advice-icon,
+.offering-icon,
+.area-icon-wrap {
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1), filter 250ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Button & Link Reset */
@@ -308,5 +344,6 @@ button {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    transform: none !important;
   }
 }
