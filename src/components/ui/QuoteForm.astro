@@ -1,0 +1,601 @@
+---
+interface Props {
+  id?: string;
+  compact?: boolean;
+}
+
+const { id = 'quote-form', compact = false } = Astro.props;
+---
+
+<div class={`quote-form-card ${compact ? 'is-compact' : ''}`} id={id}>
+  <div class="form-header">
+    <div class="form-badge">Fast Response</div>
+    <h3 class="form-title">Get a Free Starlink Quote</h3>
+    <p class="form-desc">Direct quote over the phone before booking. No hidden fees.</p>
+  </div>
+
+  <form class="lead-form" id="starlink-lead-form" novalidate>
+    <!-- Honeypot for spam bot prevention -->
+    <div class="sr-only" aria-hidden="true">
+      <label for="form-website-trap">Leave this field blank</label>
+      <input type="text" id="form-website-trap" name="website_url" tabindex="-1" autocomplete="off" />
+    </div>
+
+    <!-- Service Selection -->
+    <div class="form-group">
+      <label for="service-select" class="form-label">
+        Service Required <span class="required" aria-hidden="true">*</span>
+      </label>
+      <div class="select-wrapper">
+        <select id="service-select" name="service" class="form-input" required>
+          <option value="Starlink Installation" selected>Starlink Installation (Standard / High-Performance)</option>
+          <option value="Whole-Home Mesh WiFi Setup">Whole-Home Mesh WiFi & Network Integration</option>
+          <option value="Starlink Relocation or Dish Repositioning">Starlink Relocation & Troubleshooting</option>
+          <option value="Business & Commercial Network Integration">Business & Commercial Starlink Setup</option>
+          <option value="TV Wall Mounting">TV Wall Mounting</option>
+          <option value="TV Antenna Installation">TV Antenna Installation</option>
+          <option value="Not sure – need a diagnosis">Not sure – Need Advice / Diagnosis</option>
+        </select>
+        <svg class="select-arrow" viewBox="0 0 20 20" fill="currentColor" width="18" height="18" aria-hidden="true">
+          <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+        </svg>
+      </div>
+      <span class="field-error" id="service-error" role="alert"></span>
+    </div>
+
+    <!-- Two Column: Name & Phone -->
+    <div class="form-grid-2">
+      <div class="form-group">
+        <label for="form-name" class="form-label">
+          Full Name <span class="required" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="text"
+          id="form-name"
+          name="name"
+          class="form-input"
+          placeholder="e.g. David Miller"
+          required
+          autocomplete="name"
+        />
+        <span class="field-error" id="name-error" role="alert"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="form-phone" class="form-label">
+          Phone Number <span class="required" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="tel"
+          id="form-phone"
+          name="phone"
+          class="form-input"
+          placeholder="e.g. 0477 319 160"
+          required
+          autocomplete="tel"
+        />
+        <span class="field-error" id="phone-error" role="alert"></span>
+      </div>
+    </div>
+
+    <!-- Two Column: Email & Suburb -->
+    <div class="form-grid-2">
+      <div class="form-group">
+        <label for="form-email" class="form-label">
+          Email Address <span class="optional">(Optional)</span>
+        </label>
+        <input
+          type="email"
+          id="form-email"
+          name="email"
+          class="form-input"
+          placeholder="e.g. name@example.com.au"
+          autocomplete="email"
+        />
+        <span class="field-error" id="email-error" role="alert"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="form-suburb" class="form-label">
+          Brisbane / QLD Suburb <span class="required" aria-hidden="true">*</span>
+        </label>
+        <input
+          type="text"
+          id="form-suburb"
+          name="suburb"
+          class="form-input"
+          placeholder="e.g. Samford, Logan, Redland"
+          required
+          autocomplete="address-level2"
+        />
+        <span class="field-error" id="suburb-error" role="alert"></span>
+      </div>
+    </div>
+
+    <!-- Message Field -->
+    <div class="form-group">
+      <label for="form-message" class="form-label">
+        Job Details / Roof Type <span class="required" aria-hidden="true">*</span>
+      </label>
+      <textarea
+        id="form-message"
+        name="message"
+        class="form-textarea"
+        rows="3"
+        placeholder="Tell us about your property (single/two-storey, roof type, kit version or WiFi goals)..."
+        required
+      ></textarea>
+      <span class="field-error" id="message-error" role="alert"></span>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="submit-btn" id="form-submit-btn">
+      <span class="btn-text">Request Free Quote Now</span>
+      <span class="btn-spinner" aria-hidden="true"></span>
+      <svg class="btn-icon" viewBox="0 0 20 20" fill="currentColor" width="18" height="18" aria-hidden="true">
+        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+      </svg>
+    </button>
+
+    <!-- Form Notification States -->
+    <div class="form-alert form-success" id="form-success-alert" role="status" aria-live="polite" style="display: none;">
+      <svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+      </svg>
+      <div>
+        <strong>Quote Request Received!</strong>
+        <p>Thank you! Our technician will call you shortly at the provided number to confirm details and give you an upfront quote.</p>
+      </div>
+    </div>
+
+    <div class="form-alert form-error" id="form-general-error" role="alert" style="display: none;">
+      <svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20">
+        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+      </svg>
+      <div>
+        <strong>Please check required fields</strong>
+        <p id="form-error-text">Please complete all required fields with valid details.</p>
+      </div>
+    </div>
+
+    <div class="form-footer-note">
+      <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+        <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+      </svg>
+      <span>No obligation quote. Your details are strictly confidential.</span>
+    </div>
+  </form>
+</div>
+
+<style>
+  .quote-form-card {
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 1.25rem;
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(14, 165, 233, 0.12);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quote-form-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--starlink-cyan) 0%, var(--action-orange) 50%, var(--starlink-blue) 100%);
+  }
+
+  .form-header {
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+
+  .form-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--action-orange);
+    background: rgba(249, 115, 22, 0.12);
+    border: 1px solid rgba(249, 115, 22, 0.3);
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-title {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    color: var(--text-white);
+    margin-bottom: 0.35rem;
+  }
+
+  .form-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  .lead-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  .form-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+
+  @media (min-width: 520px) {
+    .form-grid-2 {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    position: relative;
+  }
+
+  .form-label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .required {
+    color: #f87171;
+  }
+
+  .optional {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    font-weight: 400;
+  }
+
+  .form-input,
+  .form-textarea {
+    width: 100%;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    color: var(--text-heading);
+    background: rgba(7, 11, 20, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 0.5rem;
+    padding: 0.75rem 0.95rem;
+    transition: all var(--transition-fast);
+    outline: none;
+  }
+
+  .form-input:hover,
+  .form-textarea:hover {
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .form-input:focus,
+  .form-textarea:focus {
+    border-color: var(--starlink-cyan);
+    box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+    background: rgba(11, 17, 32, 0.95);
+  }
+
+  .form-input::placeholder,
+  .form-textarea::placeholder {
+    color: var(--text-dim);
+  }
+
+  .form-input.is-invalid,
+  .form-textarea.is-invalid {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.2);
+  }
+
+  .select-wrapper {
+    position: relative;
+  }
+
+  .select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 2.25rem;
+    cursor: pointer;
+  }
+
+  .select-arrow {
+    position: absolute;
+    right: 0.85rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    pointer-events: none;
+  }
+
+  .form-textarea {
+    resize: vertical;
+    min-height: 80px;
+  }
+
+  .field-error {
+    font-size: 0.75rem;
+    color: #f87171;
+    display: none;
+  }
+
+  .field-error.visible {
+    display: block;
+  }
+
+  /* Submit Button */
+  .submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-white);
+    background: linear-gradient(135deg, var(--action-orange) 0%, #ea580c 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.625rem;
+    padding: 0.9rem 1.5rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: 0 6px 18px var(--action-orange-glow);
+    margin-top: 0.5rem;
+  }
+
+  .submit-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #fb923c 0%, var(--action-orange) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(249, 115, 22, 0.5);
+  }
+
+  .submit-btn:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.75;
+    cursor: not-allowed;
+  }
+
+  .btn-spinner {
+    display: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+
+  .submit-btn.loading .btn-text {
+    opacity: 0.9;
+  }
+
+  .submit-btn.loading .btn-spinner {
+    display: block;
+  }
+
+  .submit-btn.loading .btn-icon {
+    display: none;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Alerts */
+  .form-alert {
+    padding: 0.85rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .form-success {
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: #6ee7b7;
+  }
+
+  .form-success p {
+    margin-top: 0.25rem;
+    color: #d1fae5;
+  }
+
+  .form-error {
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.4);
+    color: #fca5a5;
+  }
+
+  .form-error p {
+    margin-top: 0.25rem;
+    color: #fee2e2;
+  }
+
+  .form-footer-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: var(--text-dim);
+    text-align: center;
+  }
+
+  .form-footer-note svg {
+    color: var(--starlink-cyan-light);
+    flex-shrink: 0;
+  }
+</style>
+
+<script>
+  // Client-side quote form handler
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('starlink-lead-form') as HTMLFormElement | null;
+    if (!form) return;
+
+    const submitBtn = document.getElementById('form-submit-btn') as HTMLButtonElement | null;
+    const successAlert = document.getElementById('form-success-alert');
+    const generalError = document.getElementById('form-general-error');
+    const errorText = document.getElementById('form-error-text');
+
+    const fields = {
+      name: document.getElementById('form-name') as HTMLInputElement,
+      phone: document.getElementById('form-phone') as HTMLInputElement,
+      email: document.getElementById('form-email') as HTMLInputElement,
+      suburb: document.getElementById('form-suburb') as HTMLInputElement,
+      message: document.getElementById('form-message') as HTMLTextAreaElement,
+      website: document.getElementById('form-website-trap') as HTMLInputElement,
+    };
+
+    const validatePhone = (phone: string) => {
+      // Allow Australian mobile (04xx xxx xxx) or landline or standard digits (min 8 digits)
+      const clean = phone.replace(/[\s\-\(\)\+]/g, '');
+      return clean.length >= 8 && /^\d+$/.test(clean);
+    };
+
+    const validateEmail = (email: string) => {
+      if (!email.trim()) return true; // Optional field
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    };
+
+    const showError = (input: HTMLElement | null, errorElId: string, msg: string) => {
+      if (input) input.classList.add('is-invalid');
+      const errEl = document.getElementById(errorElId);
+      if (errEl) {
+        errEl.textContent = msg;
+        errEl.classList.add('visible');
+      }
+    };
+
+    const clearError = (input: HTMLElement | null, errorElId: string) => {
+      if (input) input.classList.remove('is-invalid');
+      const errEl = document.getElementById(errorElId);
+      if (errEl) {
+        errEl.textContent = '';
+        errEl.classList.remove('visible');
+      }
+    };
+
+    // Live validation clearing on input
+    Object.entries(fields).forEach(([key, input]) => {
+      if (!input) return;
+      input.addEventListener('input', () => {
+        clearError(input, `${key}-error`);
+        if (generalError) generalError.style.display = 'none';
+      });
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Check honeypot
+      if (fields.website && fields.website.value.trim() !== '') {
+        console.warn('Spam trap triggered.');
+        return;
+      }
+
+      let isValid = true;
+
+      // Validate Name
+      if (!fields.name.value.trim()) {
+        showError(fields.name, 'name-error', 'Please enter your full name.');
+        isValid = false;
+      } else {
+        clearError(fields.name, 'name-error');
+      }
+
+      // Validate Phone
+      if (!fields.phone.value.trim()) {
+        showError(fields.phone, 'phone-error', 'Please enter your phone number.');
+        isValid = false;
+      } else if (!validatePhone(fields.phone.value)) {
+        showError(fields.phone, 'phone-error', 'Please enter a valid phone number (at least 8-10 digits).');
+        isValid = false;
+      } else {
+        clearError(fields.phone, 'phone-error');
+      }
+
+      // Validate Email (optional)
+      if (fields.email.value.trim() && !validateEmail(fields.email.value)) {
+        showError(fields.email, 'email-error', 'Please enter a valid email address.');
+        isValid = false;
+      } else {
+        clearError(fields.email, 'email-error');
+      }
+
+      // Validate Suburb
+      if (!fields.suburb.value.trim()) {
+        showError(fields.suburb, 'suburb-error', 'Please enter your suburb (e.g. Brisbane Southside, Samford).');
+        isValid = false;
+      } else {
+        clearError(fields.suburb, 'suburb-error');
+      }
+
+      // Validate Message
+      if (!fields.message.value.trim()) {
+        showError(fields.message, 'message-error', 'Please provide a brief description of your installation.');
+        isValid = false;
+      } else {
+        clearError(fields.message, 'message-error');
+      }
+
+      if (!isValid) {
+        if (generalError) {
+          generalError.style.display = 'flex';
+          if (errorText) errorText.textContent = 'Please correct the highlighted fields above.';
+        }
+        return;
+      }
+
+      // UI Loading state
+      if (submitBtn) {
+        submitBtn.classList.add('loading');
+        submitBtn.disabled = true;
+      }
+      if (generalError) generalError.style.display = 'none';
+
+      try {
+        // Safe simulated asynchronous submission
+        await new Promise((resolve) => setTimeout(resolve, 800));
+
+        // Form success state
+        if (successAlert) successAlert.style.display = 'flex';
+        form.reset();
+
+        // Scroll success alert into view smoothly if needed
+        successAlert?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } catch (err) {
+        console.error('Submission error:', err);
+        if (generalError) {
+          generalError.style.display = 'flex';
+          if (errorText) errorText.textContent = 'Unable to submit right now. Please call us directly on 0477 319 160.';
+        }
+      } finally {
+        if (submitBtn) {
+          submitBtn.classList.remove('loading');
+          submitBtn.disabled = false;
+        }
+      }
+    });
+  });
+</script>

@@ -1,0 +1,195 @@
+---
+import Button from '../ui/Button.astro';
+import Badge from '../ui/Badge.astro';
+---
+
+<section class="section why-pro-section" id="why-professional">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">
+        <span>THE IT TECHNICIAN ADVANTAGE</span>
+      </div>
+      <h2 class="section-title">
+        Why Starlink Installation Needs a <span class="text-gradient-cyan">Professional</span>
+      </h2>
+      <p class="section-subtitle">
+        Starlink is sold as a do-it-yourself kit, but there’s a catch. The dish needs a completely clear view of the sky, the cable has to get from your roof into the house without leaks or damage, and if anything goes wrong, Starlink’s only support channel is an online portal. Not much help when your internet isn’t working.
+      </p>
+    </div>
+
+    <!-- Comparison Showcase Bento -->
+    <div class="pro-grid">
+      <!-- Main Story Card -->
+      <div class="glass-card story-card">
+        <div class="card-icon-badge">📡</div>
+        <h3 class="card-title">We’re IT Technicians, Not Just Antenna Installers</h3>
+        <p class="card-body">
+          Zoo Computer Repairs installs and configures Starlink systems across Brisbane. The job doesn’t stop when the dish is on the roof. We set up your router, fix WiFi dead spots, hardwire your devices, and make sure every corner of your home or office gets fast, stable internet.
+        </p>
+        <p class="card-body highlight-quote">
+          “Others will say it’s out of their hands once the hardware is bolted to the roof. We offer a complete, end-to-end IT network solution.”
+        </p>
+        <div class="story-action">
+          <Button href="tel:0477319160" variant="phone" size="sm">
+            <span>Speak to a Technician: 0477 319 160</span>
+          </Button>
+        </div>
+      </div>
+
+      <!-- Feature Pill 1: Clear Sky View -->
+      <div class="glass-card feature-card">
+        <div class="feature-header">
+          <span class="feature-icon">🛰️</span>
+          <Badge variant="cyan">Line of Sight</Badge>
+        </div>
+        <h4 class="feature-title">Precision Obstruction Checks</h4>
+        <p class="feature-text">
+          Even a slight obstruction from an overhanging gum tree or neighboring ridgeline causes regular 10–30 second dropouts. We use satellite azimuth mapping to find the true unobstructed sweet spot.
+        </p>
+      </div>
+
+      <!-- Feature Pill 2: Roof & Cable Integrity -->
+      <div class="glass-card feature-card">
+        <div class="feature-header">
+          <span class="feature-icon">🛡️</span>
+          <Badge variant="blue">Storm Sealed</Badge>
+        </div>
+        <h4 class="feature-title">Weatherproof Cable Entry</h4>
+        <p class="feature-text">
+          No cables pinched through windows or crushed under door seals. We drill a single clean penetration, fit silicone weatherproofing grommets, and route internally through the ceiling cavity.
+        </p>
+      </div>
+
+      <!-- Feature Pill 3: Whole-Home WiFi -->
+      <div class="glass-card feature-card">
+        <div class="feature-header">
+          <span class="feature-icon">📶</span>
+          <Badge variant="orange">Full Coverage</Badge>
+        </div>
+        <h4 class="feature-title">Whole-Property WiFi & Mesh</h4>
+        <p class="feature-text">
+          Standard Starlink routers struggle through double brick and multi-storey builds. We configure mesh nodes and access points so your speeds reach the home office, sheds, and outdoor areas.
+        </p>
+      </div>
+
+      <!-- Feature Pill 4: Hardware Value Protection -->
+      <div class="glass-card feature-card">
+        <div class="feature-header">
+          <span class="feature-icon">💰</span>
+          <Badge variant="green">Asset Safe</Badge>
+        </div>
+        <h4 class="feature-title">Equipment Safety & Support</h4>
+        <p class="feature-text">
+          A replacement Starlink kit costs around $549 if damaged during DIY installation. A professional install gets it done right the first time with tested speeds and full device connectivity.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .why-pro-section {
+    position: relative;
+  }
+
+  .pro-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .pro-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .story-card {
+      grid-column: span 2;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .pro-grid {
+      grid-template-columns: 1.2fr 1fr 1fr;
+      grid-template-rows: auto auto;
+    }
+    .story-card {
+      grid-column: 1;
+      grid-row: span 2;
+    }
+  }
+
+  .story-card {
+    background: linear-gradient(145deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.7) 100%);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.25rem;
+  }
+
+  .card-icon-badge {
+    width: 48px;
+    height: 48px;
+    border-radius: 0.75rem;
+    background: rgba(14, 165, 233, 0.15);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+
+  .card-title {
+    font-size: clamp(1.35rem, 2vw, 1.65rem);
+    color: var(--text-white);
+    line-height: 1.25;
+  }
+
+  .card-body {
+    font-size: 0.95rem;
+    color: var(--text-body);
+    line-height: 1.65;
+  }
+
+  .highlight-quote {
+    color: var(--starlink-cyan-light);
+    font-style: italic;
+    padding-left: 1rem;
+    border-left: 3px solid var(--starlink-cyan);
+    margin: 0.5rem 0;
+  }
+
+  .story-action {
+    margin-top: 0.5rem;
+  }
+
+  /* Feature Card */
+  .feature-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .feature-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .feature-icon {
+    font-size: 1.5rem;
+  }
+
+  .feature-title {
+    font-size: 1.125rem;
+    color: var(--text-heading);
+  }
+
+  .feature-text {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+</style>

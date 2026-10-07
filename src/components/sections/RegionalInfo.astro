@@ -1,0 +1,196 @@
+---
+import Badge from '../ui/Badge.astro';
+
+const regionalHighlights = [
+  {
+    metric: '100+ Mbps',
+    label: 'Typical Download Speeds',
+    sub: 'Stream 4K, video conference, and game without buffering',
+  },
+  {
+    metric: '25–30 ms',
+    label: 'Ultra-Low Latency',
+    sub: 'Responsive LEO constellation outperforms old geosync satellites',
+  },
+  {
+    metric: 'Zero Markup',
+    label: 'Direct Starlink Billing',
+    sub: 'You pay Starlink directly for service; no middleman plan fee',
+  },
+  {
+    metric: '100% Coverage',
+    label: 'Every QLD Property',
+    sub: 'Full connectivity regardless of how far from the NBN node you live',
+  },
+];
+---
+
+<section class="section regional-section" id="regional-info">
+  <div class="container">
+    <div class="regional-grid">
+      <!-- Left Column: Copy & Transparency Info -->
+      <div class="regional-content">
+        <div class="section-eyebrow">
+          <span>REGIONAL QUEENSLAND INTERNET</span>
+        </div>
+
+        <h2 class="regional-title">
+          Starlink in Brisbane & <span class="text-gradient-cyan">Regional Queensland</span>
+        </h2>
+
+        <div class="text-blocks">
+          <p class="regional-text">
+            Starlink delivers high-speed, low-latency internet from a network of low Earth orbit satellites, with typical download speeds well above 100 Mbps and latency around 25 to 30 ms. For rural and semi-rural properties around Brisbane, Logan, Ipswich and the Scenic Rim where NBN fixed line never arrived, it’s often the fastest option available. It’s also a strong backup connection for businesses that can’t afford downtime.
+          </p>
+
+          <p class="regional-text">
+            As at mid-2026, Starlink residential plans in Australia start from around $75 per month, with hardware available as a free rental (you pay shipping) or an outright purchase. Roam plans suit caravans and 4WD setups. Pricing and promotions change regularly, so check <strong>starlink.com/au</strong> for current offers at your address.
+          </p>
+
+          <div class="transparency-callout">
+            <div class="callout-icon">💡</div>
+            <div>
+              <h4 class="callout-title">Honest Service Model</h4>
+              <p class="callout-text">
+                We install the dish and set up your internal network — you keep your Starlink account and billing directly with Starlink, so there’s <strong>no middleman markup</strong> on your monthly plan.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Performance Highlights Grid -->
+      <div class="regional-cards-col">
+        <div class="metrics-grid">
+          {regionalHighlights.map((hl) => (
+            <div class="glass-card metric-card">
+              <div class="metric-val text-gradient-cyan">{hl.metric}</div>
+              <h3 class="metric-label">{hl.label}</h3>
+              <p class="metric-sub">{hl.sub}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .regional-section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .regional-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .regional-grid {
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3.5rem;
+    }
+  }
+
+  .regional-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .regional-title {
+    font-size: clamp(1.75rem, 3vw + 0.5rem, 2.5rem);
+    color: var(--text-white);
+  }
+
+  .text-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .regional-text {
+    font-size: 0.95rem;
+    color: var(--text-body);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .transparency-callout {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background: rgba(14, 165, 233, 0.08);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 0.875rem;
+    padding: 1.1rem 1.25rem;
+    margin-top: 0.5rem;
+  }
+
+  .callout-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .callout-title {
+    font-size: 1rem;
+    color: var(--text-white);
+    margin-bottom: 0.25rem;
+  }
+
+  .callout-text {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .callout-text strong {
+    color: var(--starlink-cyan-light);
+  }
+
+  /* Metrics Grid */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 540px) {
+    .metrics-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .metric-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 1.5rem;
+    border-color: rgba(56, 189, 248, 0.2);
+  }
+
+  .metric-val {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .metric-label {
+    font-size: 1.05rem;
+    color: var(--text-white);
+    font-weight: 700;
+  }
+
+  .metric-sub {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin: 0;
+  }
+</style>

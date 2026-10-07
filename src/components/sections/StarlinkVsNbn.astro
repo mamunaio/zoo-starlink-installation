@@ -1,0 +1,189 @@
+---
+import Button from '../ui/Button.astro';
+import Badge from '../ui/Badge.astro';
+
+const situations = [
+  {
+    icon: '📡',
+    title: 'On Sky Muster Satellite',
+    badge: 'Massive Upgrade',
+    badgeVariant: 'green' as const,
+    desc: 'Tired of strict peak data allowances and 600ms+ high latency? Starlink delivers uncapped residential data with crisp 25–30ms response times for Zoom and online calls.',
+  },
+  {
+    icon: '📶',
+    title: 'Congested NBN Fixed Wireless',
+    badge: 'Speed Boost',
+    badgeVariant: 'cyan' as const,
+    desc: 'If your local fixed wireless tower slows to a crawl during evening peak hours, Starlink bypasses local tower congestion entirely via satellite mesh.',
+  },
+  {
+    icon: '🚫',
+    title: 'No NBN Available at Your Address',
+    badge: 'True Broadband',
+    badgeVariant: 'orange' as const,
+    desc: 'For newly built acreages, semi-rural properties, and off-grid locations where NBN fixed line was never built, Starlink delivers full fiber-class speeds immediately.',
+  },
+  {
+    icon: '💼',
+    title: 'Business Redundancy & Zero Downtime',
+    badge: 'Failover Shield',
+    badgeVariant: 'blue' as const,
+    desc: 'Businesses that cannot afford POS or server downtime use Starlink as an independent, secondary backup internet pipeline alongside existing fiber.',
+  },
+];
+---
+
+<section class="section section-alt suitability-section" id="starlink-vs-nbn">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">
+        <span>HONEST LOCAL ADVICE</span>
+      </div>
+      <h2 class="section-title">
+        Is Starlink Right for <span class="text-gradient-cyan">Your Property?</span>
+      </h2>
+      <p class="section-subtitle">
+        If you have full Fibre to the Premises (FTTP), NBN is usually the better and cheaper option. Starlink is typically a major upgrade in these 4 scenarios:
+      </p>
+    </div>
+
+    <!-- 4 Scenario Bento Grid -->
+    <div class="scenarios-grid">
+      {situations.map((item) => (
+        <div class="glass-card scenario-card">
+          <div class="scenario-header">
+            <span class="scenario-icon">{item.icon}</span>
+            <Badge variant={item.badgeVariant}>{item.badge}</Badge>
+          </div>
+          <h3 class="scenario-title">{item.title}</h3>
+          <p class="scenario-desc">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Honest Advice Banner -->
+    <div class="glass-card advice-banner">
+      <div class="advice-content">
+        <div class="advice-icon">💬</div>
+        <div>
+          <h3 class="advice-title">Not Sure Which Internet Connection is Best for You?</h3>
+          <p class="advice-text">
+            Call our technicians on <strong>0477 319 160</strong>. We’ll check your exact street address on NBN & Starlink satellite maps and give you honest, unbiased advice before you spend a cent on hardware.
+          </p>
+        </div>
+      </div>
+      <div class="advice-action">
+        <Button href="tel:0477319160" variant="primary" size="md">
+          <span>Call 0477 319 160</span>
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .suitability-section {
+    position: relative;
+  }
+
+  .scenarios-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (min-width: 640px) {
+    .scenarios-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .scenario-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: all var(--transition-smooth);
+  }
+
+  .scenario-card:hover {
+    transform: translateY(-3px);
+  }
+
+  .scenario-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .scenario-icon {
+    font-size: 1.5rem;
+  }
+
+  .scenario-title {
+    font-size: 1.15rem;
+    color: var(--text-white);
+    line-height: 1.25;
+  }
+
+  .scenario-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* Advice Banner */
+  .advice-banner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.15) 0%, rgba(15, 23, 42, 0.8) 100%);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+  }
+
+  @media (min-width: 860px) {
+    .advice-banner {
+      flex-direction: row;
+      align-items: center;
+    }
+    .advice-content {
+      max-width: 70%;
+    }
+  }
+
+  .advice-content {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .advice-icon {
+    font-size: 1.75rem;
+    flex-shrink: 0;
+  }
+
+  .advice-title {
+    font-size: 1.15rem;
+    color: var(--text-white);
+    margin-bottom: 0.25rem;
+  }
+
+  .advice-text {
+    font-size: 0.875rem;
+    color: var(--text-body);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .advice-text strong {
+    color: var(--starlink-cyan-light);
+  }
+
+  .advice-action {
+    flex-shrink: 0;
+  }
+</style>

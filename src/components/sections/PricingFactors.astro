@@ -1,0 +1,173 @@
+---
+import Button from '../ui/Button.astro';
+
+const factors = [
+  {
+    icon: '🏠',
+    title: 'Mount Type & Roof Access',
+    desc: 'Roof, ridgeline, wall, pole or gutter mount. Roof height (single vs. two-storey) and pitch/access difficulty affect the hardware and time required.',
+  },
+  {
+    icon: '📏',
+    title: 'Cable Routing Length',
+    desc: 'Distance from the dish to your preferred router location, internal wall cavity availability, and whether under-floor or ceiling conduit runs are needed.',
+  },
+  {
+    icon: '📶',
+    title: 'WiFi & Network Extras',
+    desc: 'Standard router setup is included in every job. High-performance mesh systems, additional access points, and Cat6 data drops are quoted transparently.',
+  },
+  {
+    icon: '💼',
+    title: 'Business & Commercial Setups',
+    desc: 'Multi-router enterprise setups, hardwired failover gateways, server racks, and commercial premises are tailored and quoted individually.',
+  },
+];
+---
+
+<section class="section section-alt pricing-section" id="pricing">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">
+        <span>HONEST & UPFRONT ESTIMATES</span>
+      </div>
+      <h2 class="section-title">
+        What Affects <span class="text-gradient-cyan">Installation Cost</span>
+      </h2>
+      <p class="section-subtitle">
+        Every property is unique, so we give you a straight, accurate quote over the phone before we book the job. No surprise extras or hidden fees on site.
+      </p>
+    </div>
+
+    <!-- Factors Grid -->
+    <div class="factors-grid">
+      {factors.map((item) => (
+        <div class="glass-card factor-card">
+          <div class="factor-icon-box" aria-hidden="true">{item.icon}</div>
+          <h3 class="factor-title">{item.title}</h3>
+          <p class="factor-desc">{item.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Phone Quote Banner -->
+    <div class="pricing-cta-card">
+      <div class="pricing-cta-content">
+        <h3 class="pricing-cta-title">Need an Instant Estimate for Your Address?</h3>
+        <p class="pricing-cta-desc">
+          Tell us your suburb and roof type. Our technician will calculate your exact installation scope with zero sales pressure.
+        </p>
+      </div>
+      <div class="pricing-cta-actions">
+        <Button href="tel:0477319160" variant="primary" size="lg">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20" aria-hidden="true">
+            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+          </svg>
+          <span>Call 0477 319 160</span>
+        </Button>
+        <Button href="#quote-form" variant="outline" size="lg">
+          <span>Request Quote Online</span>
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing-section {
+    position: relative;
+  }
+
+  .factors-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .factors-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .factors-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .factor-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .factor-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 0.625rem;
+    background: rgba(14, 165, 233, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+  }
+
+  .factor-title {
+    font-size: 1.125rem;
+    color: var(--text-white);
+    line-height: 1.3;
+  }
+
+  .factor-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* Pricing CTA Card */
+  .pricing-cta-card {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-radius: 1rem;
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    box-shadow: var(--shadow-md);
+  }
+
+  @media (min-width: 900px) {
+    .pricing-cta-card {
+      flex-direction: row;
+      align-items: center;
+    }
+    .pricing-cta-content {
+      max-width: 60%;
+    }
+  }
+
+  .pricing-cta-title {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    color: var(--text-white);
+    margin-bottom: 0.4rem;
+  }
+
+  .pricing-cta-desc {
+    font-size: 0.9375rem;
+    color: var(--text-body);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .pricing-cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+</style>

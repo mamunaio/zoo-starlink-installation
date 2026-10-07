@@ -1,0 +1,167 @@
+---
+import Button from '../ui/Button.astro';
+
+const offerings = [
+  {
+    icon: '🏠',
+    title: 'Residential Starlink Installation',
+    desc: 'Full dish mounting, clean cable routing, and WiFi setup for Brisbane homes, start to finish. You just need your Starlink kit ready.',
+    features: ['Roof / Ridgeline / Wall Mount', 'Single-Point Clean Cable Entry', 'Router Configuration & Speed Test'],
+  },
+  {
+    icon: '💼',
+    title: 'Business & Network Integration',
+    desc: 'Hardwired connections, bypass mode, firewall routing, and seamless integration with your existing commercial network gear.',
+    features: ['Starlink Bypass Mode Config', 'Dual-WAN Failover Setup', 'Server Rack & Switch Patching'],
+  },
+  {
+    icon: '🚚',
+    title: 'Relocations & Troubleshooting',
+    desc: 'Moving house or fighting constant dropouts? We reposition badly placed dishes and fix existing faulty DIY Starlink setups.',
+    features: ['Dish De-mount & Re-install', 'Obstruction Remediation', 'Speed & Ping Diagnostics'],
+  },
+  {
+    icon: '🌐',
+    title: 'Mesh WiFi & Ethernet Setup',
+    desc: 'Whole-home coverage with high-speed mesh nodes, UniFi/Omada access points, and hardwired Cat6 ethernet drops throughout the property.',
+    features: ['Multi-Storey WiFi Elimination', 'Shed / Granny Flat Links', 'Direct PC & Console Hardwiring'],
+  },
+];
+---
+
+<section class="section offerings-section" id="service-offerings">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">
+        <span>CUSTOMIZED PACKAGES</span>
+      </div>
+      <h2 class="section-title">
+        Starlink Services <span class="text-gradient-cyan">We Offer</span>
+      </h2>
+      <p class="section-subtitle">
+        From a standard single-storey residential install to multi-building acreage networks, we handle every tier of Starlink deployment.
+      </p>
+    </div>
+
+    <!-- 4-Card Offerings Grid -->
+    <div class="offerings-grid">
+      {offerings.map((offering) => (
+        <div class="glass-card offering-card">
+          <div class="offering-header">
+            <div class="offering-icon">{offering.icon}</div>
+            <h3 class="offering-title">{offering.title}</h3>
+          </div>
+
+          <p class="offering-desc">{offering.desc}</p>
+
+          <ul class="offering-features">
+            {offering.features.map((feat) => (
+              <li class="offering-feature-item">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span>{feat}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div class="offering-footer">
+            <Button href="#quote-form" variant="outline" size="sm" class="w-full">
+              <span>Book This Service</span>
+            </Button>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .offerings-section {
+    position: relative;
+  }
+
+  .offerings-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .offerings-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .offerings-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .offering-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    transition: all var(--transition-smooth);
+  }
+
+  .offering-card:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-4px);
+  }
+
+  .offering-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .offering-icon {
+    font-size: 2rem;
+  }
+
+  .offering-title {
+    font-size: 1.15rem;
+    color: var(--text-white);
+    line-height: 1.25;
+  }
+
+  .offering-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .offering-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .offering-feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.8125rem;
+    color: #e2e8f0;
+  }
+
+  .offering-feature-item svg {
+    color: var(--starlink-cyan-light);
+    flex-shrink: 0;
+  }
+
+  .offering-footer {
+    margin-top: auto;
+    padding-top: 0.5rem;
+  }
+
+  .w-full {
+    width: 100%;
+  }
+</style>

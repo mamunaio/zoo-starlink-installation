@@ -1,0 +1,211 @@
+---
+const faqs = [
+  {
+    id: 'faq-1',
+    question: 'Can I install Starlink myself?',
+    answer: 'Yes, the kit is designed for DIY. But a successful DIY install depends on having an easy mounting spot with a clear sky view and a simple cable path. Two-storey roofs, tile roofs, tricky cable runs and larger homes with WiFi coverage problems are where professional installation pays for itself.',
+  },
+  {
+    id: 'faq-2',
+    question: 'How much does Starlink installation cost in Brisbane?',
+    answer: 'It depends on the mount type, roof height and access, cable run length, and whether you want extras like mesh WiFi or ethernet. Call 0477 319 160 and we’ll give you a straight quote over the phone. No hidden fees.',
+  },
+  {
+    id: 'faq-3',
+    question: 'Where should the Starlink dish be mounted?',
+    answer: 'Wherever it gets a full, unobstructed view of the sky. That’s usually the roof ridgeline or a pole clear of trees. We check the location with the Starlink app before drilling anything, because even partial obstruction from a branch causes regular dropouts.',
+  },
+  {
+    id: 'faq-4',
+    question: 'How long does installation take?',
+    answer: 'Most standard installs take 1.5 to 3 hours, including mounting, cabling, router setup and speed testing. Complex jobs with long cable runs or mesh WiFi take longer.',
+  },
+  {
+    id: 'faq-5',
+    question: 'Do I need an electrician to install Starlink?',
+    answer: 'No. Starlink plugs into a standard power point and the cabling is low voltage. If your preferred router location has no power point nearby, we can advise on options.',
+  },
+  {
+    id: 'faq-6',
+    question: 'Does Starlink work in storms?',
+    answer: 'The dish is built for harsh weather and keeps working through rain and wind, though very heavy storms can cause brief slowdowns. Correct mounting matters here: a securely fixed, properly weatherproofed install handles Queensland summer storms without drama.',
+  },
+  {
+    id: 'faq-7',
+    question: 'Is Starlink better than NBN?',
+    answer: 'If you have fibre to the premises, NBN is usually the better and cheaper option. If you’re on Sky Muster satellite, fixed wireless with congestion problems, or no NBN at all, Starlink is typically a big upgrade in both speed and latency. We’re happy to give honest advice for your address before you spend anything.',
+  },
+  {
+    id: 'faq-8',
+    question: 'I already have Starlink but the WiFi is terrible. Can you help?',
+    answer: 'Yes, this is one of our most common jobs. We fix coverage with mesh systems, access points and hardwired connections, and we can reposition badly placed dishes.',
+  },
+];
+---
+
+<section class="section faq-section" id="faq">
+  <div class="container container-narrow">
+    <div class="section-header">
+      <div class="section-eyebrow">
+        <span>QUESTIONS & ANSWERS</span>
+      </div>
+      <h2 class="section-title">
+        Frequently Asked <span class="text-gradient-cyan">Questions</span>
+      </h2>
+      <p class="section-subtitle">
+        Everything you need to know about professional Starlink installation, hardware, speed capabilities, and Queensland property mounting.
+      </p>
+    </div>
+
+    <!-- Accordion List -->
+    <div class="faq-accordion-list" id="faq-accordion">
+      {faqs.map((faq, index) => (
+        <div class="faq-item glass-card" id={`item-${faq.id}`}>
+          <button
+            type="button"
+            class="faq-trigger"
+            aria-expanded="false"
+            aria-controls={`panel-${faq.id}`}
+            id={`btn-${faq.id}`}
+          >
+            <span class="faq-question-text">{faq.question}</span>
+            <span class="faq-icon-wrap" aria-hidden="true">
+              <svg class="faq-icon-chevron" viewBox="0 0 20 20" fill="currentColor" width="18" height="18">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+              </svg>
+            </span>
+          </button>
+
+          <div
+            class="faq-panel"
+            id={`panel-${faq.id}`}
+            role="region"
+            aria-labelledby={`btn-${faq.id}`}
+            hidden
+          >
+            <div class="faq-content-inner">
+              <p>{faq.answer}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-section {
+    position: relative;
+  }
+
+  .faq-accordion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .faq-item {
+    padding: 0;
+    overflow: hidden;
+    transition: border-color var(--transition-smooth);
+  }
+
+  .faq-item.is-active {
+    border-color: rgba(56, 189, 248, 0.4);
+    background: rgba(20, 30, 55, 0.85);
+  }
+
+  .faq-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-white);
+  }
+
+  .faq-question-text {
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .faq-icon-wrap {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--starlink-cyan-light);
+    flex-shrink: 0;
+    transition: transform var(--transition-smooth), background-color var(--transition-smooth);
+  }
+
+  .faq-icon-chevron {
+    transition: transform var(--transition-smooth);
+  }
+
+  .faq-item.is-active .faq-icon-chevron {
+    transform: rotate(180deg);
+  }
+
+  .faq-item.is-active .faq-icon-wrap {
+    background: rgba(14, 165, 233, 0.2);
+    border-color: rgba(56, 189, 248, 0.4);
+  }
+
+  .faq-panel {
+    padding: 0 1.5rem 1.25rem 1.5rem;
+    border-top: 1px solid transparent;
+  }
+
+  .faq-item.is-active .faq-panel {
+    border-top-color: rgba(255, 255, 255, 0.06);
+  }
+
+  .faq-content-inner p {
+    font-size: 0.9375rem;
+    color: var(--text-body);
+    line-height: 1.6;
+    margin: 0;
+    padding-top: 0.5rem;
+  }
+</style>
+
+<script>
+  // Accessible Accordion Interaction
+  document.addEventListener('DOMContentLoaded', () => {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach((item) => {
+      const button = item.querySelector('.faq-trigger') as HTMLButtonElement | null;
+      const panel = item.querySelector('.faq-panel') as HTMLElement | null;
+
+      if (!button || !panel) return;
+
+      button.addEventListener('click', () => {
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+        // Toggle state
+        if (isExpanded) {
+          button.setAttribute('aria-expanded', 'false');
+          panel.hidden = true;
+          item.classList.remove('is-active');
+        } else {
+          button.setAttribute('aria-expanded', 'true');
+          panel.hidden = false;
+          item.classList.add('is-active');
+        }
+      });
+    });
+  });
+</script>

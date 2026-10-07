@@ -1,0 +1,31 @@
+# Build & Dependency Outputs
+node_modules/
+dist/
+.astro/
+
+# Environment variables
+.env
+.env.production
+.env.development
+.env.local
+.env.*
+!.env.example
+
+# Logs & Runtime
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor & OS Metadata
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

@@ -1,0 +1,174 @@
+---
+const services = [
+  {
+    icon: '📡',
+    number: '01',
+    title: 'Site Survey & Obstruction Check',
+    desc: 'We use the Starlink app and our own experience to find the mounting spot with the clearest view of the sky. Trees, chimneys and neighbouring rooflines all degrade your signal.',
+    badge: 'Step 1: Line of Sight',
+  },
+  {
+    icon: '⚒️',
+    number: '02',
+    title: 'Dish Mounting',
+    desc: 'Roof, ridgeline, wall, pole or gutter mount, whichever suits your property. All mounts are weatherproofed and secured to handle Queensland storms.',
+    badge: 'Step 2: Heavy-Duty Mount',
+  },
+  {
+    icon: '🔌',
+    number: '03',
+    title: 'Cable Routing & Entry',
+    desc: 'We run the cable neatly, drill a single clean entry point, seal it against water, and hide the run where possible. No cables dangling down your walls.',
+    badge: 'Step 3: Clean Entry',
+  },
+  {
+    icon: '📶',
+    number: '04',
+    title: 'Router & WiFi Setup',
+    desc: 'We position and configure the Starlink router, connect your devices, run speed tests, and confirm everything works before we leave.',
+    badge: 'Step 4: Configuration',
+  },
+  {
+    icon: '🏠',
+    number: '05',
+    title: 'Whole-Home WiFi Coverage',
+    desc: 'The standard Starlink router struggles in larger and multi-storey homes. We install mesh systems and WiFi access points for full coverage.',
+    badge: 'Step 5: Full Range',
+  },
+  {
+    icon: '🌐',
+    number: '06',
+    title: 'Ethernet & Network Integration',
+    desc: 'Need a hardwired connection for gaming, a work computer or a business network? We integrate the dish with your existing network gear.',
+    badge: 'Step 6: Hardwired Speed',
+  },
+];
+---
+
+<section class="section section-alt services-section" id="services">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">
+        <span>END-TO-END CAPABILITIES</span>
+      </div>
+      <h2 class="section-title">
+        What’s Included in Our <span class="text-gradient-cyan">Installation Service</span>
+      </h2>
+      <p class="section-subtitle">
+        Every installation is executed by experienced IT and networking technicians to ensure your Starlink hardware operates at its absolute peak speed and reliability.
+      </p>
+    </div>
+
+    <!-- 6-Card Responsive Grid -->
+    <div class="services-grid">
+      {services.map((svc) => (
+        <div class="glass-card service-card">
+          <div class="service-card-top">
+            <div class="service-icon-box" aria-hidden="true">{svc.icon}</div>
+            <span class="service-step-num">{svc.number}</span>
+          </div>
+
+          <span class="service-badge-pill">{svc.badge}</span>
+
+          <h3 class="service-card-title">{svc.title}</h3>
+          <p class="service-card-desc">{svc.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-section {
+    position: relative;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+    }
+  }
+
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--starlink-cyan), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-smooth);
+  }
+
+  .service-card:hover::before {
+    opacity: 1;
+  }
+
+  .service-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .service-icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 0.75rem;
+    background: rgba(14, 165, 233, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+
+  .service-step-num {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.15);
+  }
+
+  .service-badge-pill {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--starlink-cyan-light);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .service-card-title {
+    font-size: 1.2rem;
+    color: var(--text-white);
+    line-height: 1.25;
+  }
+
+  .service-card-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+</style>

@@ -1,0 +1,204 @@
+---
+import Button from '../ui/Button.astro';
+
+const problems = [
+  {
+    icon: '🌳',
+    title: 'Partial Obstructions & Frequent Dropouts',
+    desc: 'The dish went up in a spot with partial obstructions from trees or rooflines, causing the connection to drop out every few minutes during video calls or gaming.',
+    tag: 'Signal Issue',
+  },
+  {
+    icon: '💧',
+    title: 'Crushed Cables & Water Leaks',
+    desc: 'The cable was jammed through a window frame or door seal and got damaged by weather, or unsealed roof penetrations allowed Queensland rainwater into the ceiling.',
+    tag: 'Property Risk',
+  },
+  {
+    icon: '🪜',
+    title: 'Two-Storey Roof Safety Risks',
+    desc: 'Climbing a steep, multi-storey or slippery metal/tile roof without proper harness safety turned out to be far more dangerous than expected.',
+    tag: 'Safety Danger',
+  },
+  {
+    icon: '📉',
+    title: 'WiFi Only Works in One Room',
+    desc: 'The router is stuck where the cable entered, leaving bedrooms, offices, and downstairs living areas in persistent dead zones with sluggish speeds.',
+    tag: 'Coverage Failure',
+  },
+  {
+    icon: '📦',
+    title: 'Complex Setup & Hardware Confusion',
+    desc: 'The Starlink kit arrived, but bypassing existing modems, configuring custom network switches, or troubleshooting app errors proved too frustrating.',
+    tag: 'Configuration',
+  },
+];
+---
+
+<section class="section diy-pitfalls-section" id="diy-risks">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">
+        <span>COMMON DIY PITFALLS</span>
+      </div>
+      <h2 class="section-title">
+        Why Get Starlink <span class="text-gradient-cyan">Professionally Installed?</span>
+      </h2>
+      <p class="section-subtitle">
+        Plenty of people install the kit themselves and it goes fine. The ones who call us usually hit one of these common and costly stumbling blocks:
+      </p>
+    </div>
+
+    <!-- Pitfalls Interactive Card Grid -->
+    <div class="pitfalls-grid">
+      {problems.map((prob) => (
+        <div class="glass-card pitfall-card">
+          <div class="pitfall-header">
+            <span class="pitfall-icon">{prob.icon}</span>
+            <span class="pitfall-tag">{prob.tag}</span>
+          </div>
+          <h3 class="pitfall-title">{prob.title}</h3>
+          <p class="pitfall-desc">{prob.desc}</p>
+        </div>
+      ))}
+
+      <!-- Conclusion & Value Math Card -->
+      <div class="glass-card value-summary-card">
+        <div class="summary-badge">THE VALUE OF EXPERTISE</div>
+        <h3 class="summary-title">Protect Your $549+ Hardware & Safety</h3>
+        <p class="summary-text">
+          A professional install costs less than replacing damaged equipment (the standard kit is worth around $549 if you break it), and a lot less than a hospital visit from a roof fall.
+        </p>
+        <p class="summary-text">
+          You get it done right the first time: correct placement, sealed penetrations, tested speeds, and working WiFi through the whole property.
+        </p>
+        <div class="summary-cta">
+          <Button href="tel:0477319160" variant="primary" size="md">
+            <span>Call 0477 319 160</span>
+          </Button>
+          <span class="cta-sub">Free quotes over the phone</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .diy-pitfalls-section {
+    position: relative;
+  }
+
+  .pitfalls-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .pitfalls-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .pitfalls-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .pitfall-card {
+    border-left: 3px solid rgba(239, 68, 68, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: all var(--transition-smooth);
+  }
+
+  .pitfall-card:hover {
+    border-left-color: #f87171;
+    transform: translateY(-3px);
+  }
+
+  .pitfall-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .pitfall-icon {
+    font-size: 1.5rem;
+  }
+
+  .pitfall-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #fca5a5;
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    padding: 0.2rem 0.55rem;
+    border-radius: 9999px;
+  }
+
+  .pitfall-title {
+    font-size: 1.125rem;
+    color: var(--text-white);
+    line-height: 1.3;
+  }
+
+  .pitfall-desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* Value Summary Card */
+  .value-summary-card {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.2) 0%, rgba(15, 23, 42, 0.9) 100%);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .value-summary-card {
+      grid-column: span 2;
+    }
+  }
+
+  .summary-badge {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--starlink-cyan-light);
+    letter-spacing: 0.08em;
+  }
+
+  .summary-title {
+    font-size: 1.25rem;
+    color: var(--text-white);
+    line-height: 1.2;
+  }
+
+  .summary-text {
+    font-size: 0.875rem;
+    color: var(--text-body);
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+
+  .summary-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+  }
+
+  .cta-sub {
+    font-size: 0.75rem;
+    color: var(--text-dim);
+  }
+</style>

@@ -1,0 +1,235 @@
+---
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import MobileCallBar from '../components/layout/MobileCallBar.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+}
+
+const {
+  title = 'Starlink Installation Brisbane | Expert Dish Mounting & WiFi Setup',
+  description = 'Professional Starlink installation across Brisbane & SE QLD. Roof mounting, neat cable routing, whole-home mesh WiFi & network setup. Call 0477 319 160.',
+  canonical = 'https://www.zoorepairs.com.au/computer-services/starlink-installation/',
+} = Astro.props;
+
+// Schema: LocalBusiness / ComputerRepairService
+const businessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Zoo Computer Repairs - Starlink Installation Brisbane',
+  url: canonical,
+  telephone: '+61477319160',
+  image: 'https://www.zoorepairs.com.au/wp-content/uploads/2023/03/zoologo.png',
+  priceRange: '$$',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Brisbane',
+    addressRegion: 'QLD',
+    addressCountry: 'AU',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: -27.4698,
+    longitude: 153.0251,
+  },
+  areaServed: [
+    'Brisbane',
+    'Brisbane Southside',
+    'Brisbane Northside',
+    'Logan',
+    'Ipswich',
+    'Redland Bay',
+    'Moreton Bay',
+    'Gold Coast',
+    'Sunshine Coast',
+    'Scenic Rim',
+  ],
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday',
+      ],
+      opens: '07:00',
+      closes: '19:00',
+    },
+  ],
+};
+
+// Schema: Service
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Starlink Installation & Network Optimization Brisbane',
+  serviceType: 'Satellite Dish Installation & IT Networking',
+  provider: {
+    '@type': 'LocalBusiness',
+    name: 'Zoo Computer Repairs',
+    telephone: '+61477319160',
+    url: 'https://www.zoorepairs.com.au',
+  },
+  areaServed: {
+    '@type': 'State',
+    name: 'Queensland',
+  },
+  description: description,
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Starlink Installation Services',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Residential Starlink Installation',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Whole-Home Mesh WiFi & Network Integration',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Commercial & Business Starlink Setup',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Starlink Relocation & Diagnostics',
+        },
+      },
+    ],
+  },
+};
+
+// Schema: FAQPage (8 FAQs strictly from audit)
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Can I install Starlink myself?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, the kit is designed for DIY. But a successful DIY install depends on having an easy mounting spot with a clear sky view and a simple cable path. Two-storey roofs, tile roofs, tricky cable runs and larger homes with WiFi coverage problems are where professional installation pays for itself.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How much does Starlink installation cost in Brisbane?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'It depends on the mount type, roof height and access, cable run length, and whether you want extras like mesh WiFi or ethernet. Call 0477 319 160 and we’ll give you a straight quote over the phone. No hidden fees.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Where should the Starlink dish be mounted?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Wherever it gets a full, unobstructed view of the sky. That’s usually the roof ridgeline or a pole clear of trees. We check the location with the Starlink app before drilling anything, because even partial obstruction from a branch causes regular dropouts.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'How long does installation take?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Most standard installs take 1.5 to 3 hours, including mounting, cabling, router setup and speed testing. Complex jobs with long cable runs or mesh WiFi take longer.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Do I need an electrician to install Starlink?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'No. Starlink plugs into a standard power point and the cabling is low voltage. If your preferred router location has no power point nearby, we can advise on options.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Does Starlink work in storms?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The dish is built for harsh weather and keeps working through rain and wind, though very heavy storms can cause brief slowdowns. Correct mounting matters here: a securely fixed, properly weatherproofed install handles Queensland summer storms without drama.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Is Starlink better than NBN?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'If you have fibre to the premises, NBN is usually the better and cheaper option. If you’re on Sky Muster satellite, fixed wireless with congestion problems, or no NBN at all, Starlink is typically a big upgrade in both speed and latency. We’re happy to give honest advice for your address before you spend anything.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'I already have Starlink but the WiFi is terrible. Can you help?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes, this is one of our most common jobs. We fix coverage with mesh systems, access points and hardwired connections, and we can reposition badly placed dishes.',
+      },
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📡</text></svg>" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:locale" content="en_AU" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Zoo Computer Repairs" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Structured Data JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(businessSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </head>
+  <body>
+    <Header />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+    <MobileCallBar />
+  </body>
+</html>

@@ -1,0 +1,374 @@
+---
+const serviceAreas = [
+  { name: 'Brisbane Southside', href: '#service-areas' },
+  { name: 'Brisbane CBD & Northside', href: '#service-areas' },
+  { name: 'Logan', href: '#service-areas' },
+  { name: 'Ipswich', href: '#service-areas' },
+  { name: 'Redland Bay', href: '#service-areas' },
+  { name: 'Moreton Bay', href: '#service-areas' },
+  { name: 'Gold Coast', href: '#service-areas' },
+  { name: 'Sunshine Coast', href: '#service-areas' },
+];
+
+const serviceLinks = [
+  { name: 'Starlink Dish Roof Mounting', href: '#services' },
+  { name: 'Site Survey & Obstruction Check', href: '#services' },
+  { name: 'Neat Weatherproof Cable Routing', href: '#services' },
+  { name: 'Whole-Home Mesh WiFi Setup', href: '#services' },
+  { name: 'Starlink Relocation & Diagnostics', href: '#services' },
+  { name: 'Business Network Integration', href: '#services' },
+];
+---
+
+<footer class="site-footer" id="footer" role="contentinfo">
+  <div class="footer-top-decor" aria-hidden="true"></div>
+
+  <div class="container footer-main">
+    <div class="footer-grid">
+      <!-- Col 1: Brand & Contact -->
+      <div class="footer-col brand-col">
+        <a href="/" class="footer-brand" aria-label="Zoo Computer Repairs Home">
+          <div class="brand-icon">📡</div>
+          <div>
+            <span class="footer-brand-name">ZOO REPAIRS</span>
+            <span class="footer-brand-sub">STARLINK & IT SPECIALISTS</span>
+          </div>
+        </a>
+
+        <p class="footer-bio">
+          Professional Starlink satellite dish mounting, weatherproof cable routing, and whole-home WiFi network optimization. We are IT technicians who ensure fast, reliable internet across all of South East Queensland.
+        </p>
+
+        <div class="contact-card">
+          <div class="contact-item">
+            <span class="contact-label">Direct Phone:</span>
+            <a href="tel:0477319160" class="contact-value phone-highlight">0477 319 160</a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Service Dispatch:</span>
+            <span class="contact-value">Greater Brisbane, Logan, Ipswich & Surrounds</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-label">Technician Availability:</span>
+            <span class="contact-value">Monday – Sunday (7:00 AM – 7:00 PM)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Col 2: Services -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Starlink Services</h4>
+        <ul class="footer-links">
+          {serviceLinks.map((item) => (
+            <li>
+              <a href={item.href} class="footer-link">
+                <span class="link-bullet">›</span> {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Col 3: Service Areas -->
+      <div class="footer-col">
+        <h4 class="footer-heading">Service Areas</h4>
+        <ul class="footer-areas-grid">
+          {serviceAreas.map((area) => (
+            <li>
+              <a href={area.href} class="area-pill">
+                <svg viewBox="0 0 20 20" fill="currentColor" width="12" height="12" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+                </svg>
+                {area.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <div class="hardware-note">
+          <p class="hardware-note-title">Hardware Note:</p>
+          <p class="hardware-note-text">
+            Zoo Computer Repairs provides professional mounting & networking services. Starlink kits and satellite service subscriptions are provided directly by Starlink (starlink.com/au).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+      <div class="footer-copy">
+        &copy; {new Date().getFullYear()} Zoo Computer Repairs. All rights reserved. Professional Starlink Dish & IT Installation Services across Brisbane & South East Queensland.
+      </div>
+      <div class="footer-bottom-links">
+        <a href="#top" class="back-to-top">
+          <span>Back to Top</span>
+          <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true">
+            <path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: #060913;
+    border-top: 1px solid var(--border-subtle);
+    position: relative;
+    margin-top: auto;
+    color: var(--text-body);
+  }
+
+  .footer-top-decor {
+    height: 3px;
+    background: linear-gradient(90deg, var(--starlink-cyan) 0%, var(--action-orange) 50%, var(--starlink-blue) 100%);
+  }
+
+  .footer-main {
+    padding-top: clamp(3rem, 5vw, 4.5rem);
+    padding-bottom: 2rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1.5fr 1fr;
+    }
+    .brand-col {
+      grid-column: span 2;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .footer-grid {
+      grid-template-columns: 1.4fr 1fr 1.2fr;
+    }
+    .brand-col {
+      grid-column: span 1;
+    }
+  }
+
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  /* Brand */
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+  }
+
+  .brand-icon {
+    width: 38px;
+    height: 38px;
+    background: rgba(37, 99, 235, 0.2);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+  }
+
+  .footer-brand-name {
+    display: block;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--text-white);
+    line-height: 1.1;
+  }
+
+  .footer-brand-sub {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--starlink-cyan-light);
+  }
+
+  .footer-bio {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .contact-card {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid var(--border-subtle);
+    border-radius: 0.75rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    font-size: 0.8125rem;
+  }
+
+  .contact-label {
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+
+  .contact-value {
+    color: var(--text-heading);
+    font-weight: 500;
+  }
+
+  .phone-highlight {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--starlink-cyan-light);
+    text-decoration: none;
+  }
+
+  .phone-highlight:hover {
+    color: var(--action-orange);
+  }
+
+  /* Headings & Links */
+  .footer-heading {
+    font-size: 1.05rem;
+    color: var(--text-white);
+    position: relative;
+    padding-bottom: 0.5rem;
+  }
+
+  .footer-heading::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 32px;
+    height: 2px;
+    background: var(--starlink-cyan);
+    border-radius: 2px;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footer-link {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .link-bullet {
+    color: var(--starlink-cyan);
+    font-weight: 700;
+  }
+
+  .footer-link:hover {
+    color: var(--text-white);
+    transform: translateX(3px);
+  }
+
+  /* Service Areas Pills */
+  .footer-areas-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .area-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    color: var(--text-body);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-subtle);
+    padding: 0.3rem 0.6rem;
+    border-radius: 9999px;
+    transition: all var(--transition-fast);
+  }
+
+  .area-pill svg {
+    color: var(--starlink-cyan);
+  }
+
+  .area-pill:hover {
+    background: rgba(14, 165, 233, 0.15);
+    border-color: rgba(56, 189, 248, 0.3);
+    color: var(--text-white);
+  }
+
+  .hardware-note {
+    background: rgba(14, 165, 233, 0.06);
+    border-left: 3px solid var(--starlink-cyan);
+    padding: 0.75rem 0.9rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+    margin-top: 0.5rem;
+  }
+
+  .hardware-note-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--starlink-cyan-light);
+    margin-bottom: 0.2rem;
+  }
+
+  .hardware-note-text {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin-bottom: 0;
+  }
+
+  /* Bottom Bar */
+  .footer-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--border-subtle);
+    font-size: 0.8125rem;
+    color: var(--text-dim);
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .footer-bottom {
+      flex-direction: row;
+      text-align: left;
+    }
+  }
+
+  .back-to-top {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  .back-to-top:hover {
+    color: var(--starlink-cyan-light);
+  }
+</style>
