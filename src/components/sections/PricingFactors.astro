@@ -59,13 +59,13 @@ const factors = [
         </p>
       </div>
       <div class="pricing-cta-actions">
-        <Button href="tel:0477319160" variant="primary" size="lg">
+        <Button href="tel:0477319160" variant="primary" size="lg" class="pricing-cta-btn">
           <svg viewBox="0 0 20 20" fill="currentColor" width="20" height="20" aria-hidden="true">
             <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
           </svg>
           <span>Call 0477 319 160</span>
         </Button>
-        <Button href="#quote-form" variant="outline" size="lg">
+        <Button href="#quote-form" variant="outline" size="lg" class="pricing-cta-btn">
           <span>Request Quote Online</span>
         </Button>
       </div>
@@ -137,7 +137,7 @@ const factors = [
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-    align-items: flex-start;
+    align-items: stretch;
     justify-content: space-between;
     box-shadow: var(--shadow-md);
   }
@@ -148,7 +148,7 @@ const factors = [
       align-items: center;
     }
     .pricing-cta-content {
-      max-width: 60%;
+      max-width: 58%;
     }
   }
 
@@ -167,7 +167,21 @@ const factors = [
 
   .pricing-cta-actions {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 0.75rem;
+    width: 100%;
+  }
+
+  @media (min-width: 900px) {
+    .pricing-cta-actions {
+      width: 100%;
+      max-width: 280px;
+      flex-shrink: 0;
+    }
+  }
+
+  .pricing-cta-btn {
+    width: 100%;
+    justify-content: center;
   }
 </style>
